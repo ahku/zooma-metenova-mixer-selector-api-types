@@ -49,7 +49,7 @@ export interface ResultQueryParams {
    * <Input!D11>
    * @default [Same as working volume]
    */
-  nominal_volume: number | null
+  maximum_volume: number | null
   /**
    * <Input!D10>
    * @default 5
