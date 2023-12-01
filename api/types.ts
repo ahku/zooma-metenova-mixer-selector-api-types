@@ -1,6 +1,17 @@
 export type MixerKey = 'ZG' | 'ZF' | 'HP' | 'HS' | 'ZGP'
-export type MixerSize = `${MixerKey}${number}`
-export type MixingPurposeCode = `#${`0${number}`|number}`
+/**
+ * Note:
+ * The intended type is `${MixerKey}${number}`, but the ts-to-zod
+ * plugin doesn't work well with string literal types
+ */
+export type MixerSize = string
+/**
+ * Note:
+ * The intended type is `#${`0${number}` | number}`, but the ts-to-zod
+ * plugin doesn't work well with string literal types
+ * @elementPattern #\S+
+ */
+export type MixingPurposeCode = string //`#${`0${number}` | number}`
 export type MixingIntensity = 'Gentle' | 'General' | 'Vigorous'
 
 /**
@@ -10,6 +21,13 @@ export type MixingIntensity = 'Gentle' | 'General' | 'Vigorous'
  * before it can start.
  */
 export type EndpointInitialData = {
+  /**
+   * <{MIXER}!{B6-}>
+   * A list of all available sizes of a mixer
+   * NOTE: Not sure if we can parse this from each
+   * Mixer sheet today since each size occupy 2 columns
+   */
+  mixerSizes: Record<MixerKey, MixerSize[]>
   mixingPurposes: {
     code: MixingPurposeCode
     title: string
@@ -34,7 +52,7 @@ export interface ResultQueryParams {
   //------------------------------------------------------------------------
   /**
    * <Input!D24>
-   * @default 'metric
+   * @default metric
    */
   units?: 'metric' | 'imperial' | null
   /**
@@ -47,7 +65,7 @@ export interface ResultQueryParams {
   working_volume: number
   /**
    * <Input!D11>
-   * @default [Same as working volume]
+   * Defaults to the working volume value
    */
   maximum_volume: number | null
   /**
@@ -76,8 +94,11 @@ export interface ResultQueryParams {
    * Populates a corresponding alternative choice input, e.g.:
    * The value { "ZG": "ZG2", "ZGP": "ZGP4" } will set 'ZG2' to
    * <Input!D27> and 'ZGP4' to <Input!D28>
+   *
+   * NOTE: The type should be Partial<Record<MixerKey, MixerSize>>, but
+   * the ts-to-zod plugin will not convert that correctly
    */
-  alt_choices?: Partial<Record<MixerKey, MixerSize>>
+  alt_choices?: Record<MixerKey | string, MixerSize>
   /**
    * <Input!D13>
    * @default General
@@ -100,13 +121,13 @@ export interface ResultQueryParams {
   /**
    * <Input!D17>
    * Material: SS (Stainless Steel)
-   * @default [First list option key]
+   * Defaults to the first list option key
    */
   material?: string | null
   /**
    * <Input!D20>
    * Material: O-rings
-   * @default [First list option]
+   * Defaults to the first list option
    */
   o_ring?: string | null
   /**
@@ -139,23 +160,6 @@ export interface ResultQueryParams {
    * <Input!D6>
    */
   free_text?: string | null
-}
-
-/**
- * ENDPOINT /results
- * PAYLOAD: ResultInputParams
- *
- * Returns _all_ mixers and their recommended settings based on the
- * user's input parameters and some metadata, which for now will be
- * repeating the input data (project, site, etc.)
- */
-export interface EndpointResultsData {
-  meta: {
-    project: string | null
-    site: string | null
-    freeText: string | null
-  }
-  results: Record<MixerKey, EndpointResultItem>
 }
 
 /**
@@ -205,6 +209,15 @@ interface MixerSelectionData {
   customSpeed?: MixerTurnoverData | null
 }
 
+const test: ResultQueryParams = {
+  inner_diameter: 22,
+  maximum_volume: 23,
+  wall_thickness: 5,
+  working_volume: 23,
+  alt_choices: {
+    HS: '23',
+  },
+}
 export interface EndpointResultItem {
   /**
    * The selection data will present the recommended and optional alternative
@@ -278,4 +291,21 @@ export interface EndpointResultItem {
      */
     boldLabel?: boolean
   }[]
+}
+
+/**
+ * ENDPOINT /results
+ * PAYLOAD: ResultInputParams
+ *
+ * Returns _all_ mixers and their recommended settings based on the
+ * user's input parameters and some metadata, which for now will be
+ * repeating the input data (project, site, etc.)
+ */
+export interface EndpointResultsData {
+  meta: {
+    project: string | null
+    site: string | null
+    freeText: string | null
+  }
+  results: Record<MixerKey, EndpointResultItem>
 }

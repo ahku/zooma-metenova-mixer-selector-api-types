@@ -1,6 +1,13 @@
 import { EndpointInitialData } from './types'
 
 export const initialData: EndpointInitialData = {
+  mixerSizes: {
+    ZG: ['ZG1', 'ZG2', 'ZG3', 'ZG4', 'ZG5', 'ZG6', 'ZG7', 'ZG8', 'ZG9'],
+    ZGP: ['ZGP2', 'ZGP5', 'ZGP8'],
+    HP: ['HP2', 'HP5', 'HP8'],
+    HS: ['HPS2', 'HPS5', 'HS8'],
+    ZF: ['ZG100', 'ZG160'],
+  },
   mixingPurposes: [
     {
       code: '#01',
