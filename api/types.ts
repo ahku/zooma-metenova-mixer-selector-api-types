@@ -20,7 +20,7 @@ export type MixingIntensity = 'Gentle' | 'General' | 'Vigorous'
  * This is the initial data object that the app will load
  * before it can start.
  */
-export type EndpointInitialData = {
+export interface EndpointInitialData {
   /**
    * <{MIXER}!{B6-}>
    * A list of all available sizes of a mixer
