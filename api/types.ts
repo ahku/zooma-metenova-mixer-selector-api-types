@@ -2,16 +2,16 @@ export type MixerKey = 'ZG' | 'ZF' | 'HP' | 'HS' | 'ZGP'
 /**
  * Note:
  * The intended type is `${MixerKey}${number}`, but the ts-to-zod
- * plugin doesn't work well with string literal types
+ * converter doesn't work well with string literal types
  */
 export type MixerSize = string
 /**
  * Note:
  * The intended type is `#${`0${number}` | number}`, but the ts-to-zod
- * plugin doesn't work well with string literal types
+ * converter doesn't work well with string literal types
  * @elementPattern #\S+
  */
-export type MixingPurposeCode = string //`#${`0${number}` | number}`
+export type MixingPurposeCode = string
 export type MixingIntensity = 'Gentle' | 'General' | 'Vigorous'
 
 /**
@@ -31,9 +31,15 @@ export interface EndpointInitialData {
   mixingPurposes: {
     code: MixingPurposeCode
     title: string
-    recommendations: MixerKey[]
+    /**
+     * Note: Set null if the cell value is "All"
+     */
+    recommendations: MixerKey[] | null
     intensity: MixingIntensity
-    vortex: boolean
+    /**
+     * Note: Set null if the cell value is "NA"
+     */
+    vortex: boolean | null
   }[]
   material: {
     letter: string
@@ -250,12 +256,10 @@ export interface EndpointResultItem {
     alternative?: MixerSelectionData | 'N/A' | null
   }
   /**
-   * Volumes: <Mixer>!<{B|D|F|...}-{7-41}>
-   * Viscosity: <Mixer>!<{C|E|G|...}-{7-41}>
-   *
-   * Contains the size data, which will be used to render the line charts.
+   * <Mixer>!<{B|D|F|...}-{7-41}>
+   * Contains the size label and the volume data
    */
-  data: {
+  sizes: {
     /**
      * E.g. "ZG1"
      */
@@ -264,11 +268,14 @@ export interface EndpointResultItem {
      * All the values in the mixer size column
      */
     volumes: number[]
-    /**
-     * All the values in the mixer size column
-     */
-    viscosity: number[]
   }[]
+  /**
+   * <Mixer>!<{C|E|G|...}-{7-41}>
+   * The viscosity scale of the mixer. Should be the same
+   * values for all sizes, and the total count should match
+   * the volume count.
+   */
+  viscosities: number[]
   /**
    *
    * <Output>
