@@ -103,60 +103,60 @@ export const initialData: EndpointInitialData = {
   ],
   material: [
     {
-      letter: '-',
-      variant: 'EN 1.4404 / 316L',
+      key: '-',
+      title: 'EN 1.4404 / 316L',
     },
     {
-      letter: 'A',
-      variant: 'EN 1.4435 / 316L',
+      key: 'A',
+      title: 'EN 1.4435 / 316L',
     },
     {
-      letter: 'B',
-      variant: 'EN 1.4539 / ANSI 904L',
+      key: 'B',
+      title: 'EN 1.4539 / ANSI 904L',
     },
     {
-      letter: 'C',
-      variant: 'Hastelloy C22',
+      key: 'C',
+      title: 'Hastelloy C22',
     },
     {
-      letter: 'D',
-      variant: 'Hastelloy C276',
+      key: 'D',
+      title: 'Hastelloy C276',
     },
     {
-      letter: 'E',
-      variant: 'UNS N08367 / AL-6XN',
+      key: 'E',
+      title: 'UNS N08367 / AL-6XN',
     },
     {
-      letter: 'F',
-      variant: 'EN 1.4571 / UNS31635 (316Ti)',
+      key: 'F',
+      title: 'EN 1.4571 / UNS31635 (316Ti)',
     },
     {
-      letter: 'G',
-      variant: 'EN 1.4435 / 316L BN2',
+      key: 'G',
+      title: 'EN 1.4435 / 316L BN2',
     },
     {
-      letter: 'H',
-      variant: 'SMO 254',
+      key: 'H',
+      title: 'SMO 254',
     },
     {
-      letter: 'J',
-      variant: 'EN 1.4404 / 316L SA-240',
+      key: 'J',
+      title: 'EN 1.4404 / 316L SA-240',
     },
     {
-      letter: 'K',
-      variant: 'Titanium',
+      key: 'K',
+      title: 'Titanium',
     },
     {
-      letter: 'L',
-      variant: 'EN 1.4404 / 316L, ASME Code case SA2156-1/UG14',
+      key: 'L',
+      title: 'EN 1.4404 / 316L, ASME Code case SA2156-1/UG14',
     },
     {
-      letter: 'M',
-      variant: 'UNS N08367/AL-6XN, ASME Code case SA2156-1',
+      key: 'M',
+      title: 'UNS N08367/AL-6XN, ASME Code case SA2156-1',
     },
     {
-      letter: 'N',
-      variant: 'Hastelloy C22, ASME Code case SA2156-1',
+      key: 'N',
+      title: 'Hastelloy C22, ASME Code case SA2156-1',
     },
   ],
   oRings: [

@@ -42,8 +42,8 @@ export interface EndpointInitialData {
     vortex: boolean | null
   }[]
   material: {
-    letter: string
-    variant: string
+    key: string
+    title: string
   }[]
   oRings: string[]
 }
