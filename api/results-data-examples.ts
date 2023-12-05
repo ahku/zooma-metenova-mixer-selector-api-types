@@ -1,9 +1,5 @@
 import { EndpointResultsData } from './types'
 
-/**
- * MIXING PURPOSE NOT SET YET
- * -- Only pure data and initial specifications returned
- */
 export const INITIAL__resultData: EndpointResultsData = {
   meta: {
     project: null,
@@ -12,7 +8,31 @@ export const INITIAL__resultData: EndpointResultsData = {
   },
   results: {
     ZG: {
-      selection: null,
+      selection: {
+        primary: {
+          size: 'ZG7',
+          maxSpeed: {
+            speed: [487, 487],
+            powerVolume: [0.63, 2.387],
+            tipSpeed: [4.51, 893],
+            data: {
+              turnovers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+              time: [
+                0.0, 0.4, 0.79, 1.19, 1.58, 1.98, 2.38, 2.77, 3.17, 3.57, 3.96, 4.36,
+                4.75,
+              ],
+            },
+          },
+        },
+        alternative: {
+          size: 'ZG10',
+          maxSpeed: {
+            speed: [490, 490],
+            powerVolume: [0.01, 0.023],
+            tipSpeed: [1.8, 353],
+          },
+        },
+      },
       sizes: [
         {
           label: 'ZG1',
@@ -132,7 +152,16 @@ export const INITIAL__resultData: EndpointResultsData = {
       ],
     },
     ZGP: {
-      selection: null,
+      selection: {
+        primary: {
+          size: 'ZGP5',
+          maxSpeed: {
+            speed: [487, 487],
+            powerVolume: [0.543, 2.057],
+            tipSpeed: [3.82,753]
+          }
+        }
+      },
       viscosities: [],
       sizes: [],
       specifications: [],
@@ -182,83 +211,6 @@ export const INITIAL__resultData: EndpointResultsData = {
       sizes: [],
       viscosities: [],
       specifications: [],
-    },
-  },
-}
-
-/**
- * MIXING PURPOSE SET
- * -- Include selection data
- */
-export const SELECTION__resultData: EndpointResultsData = {
-  meta: {
-    project: null,
-    site: null,
-    freeText: null,
-  },
-  results: {
-    ZG: {
-      selection: {
-        primary: {
-          size: 'ZG7',
-          maxSpeed: {
-            speed: [487, 487],
-            powerVolume: [0.63, 2.387],
-            tipSpeed: [4.51, 893],
-            data: {
-              turnovers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-              time: [
-                0.0, 0.4, 0.79, 1.19, 1.58, 1.98, 2.38, 2.77, 3.17, 3.57, 3.96, 4.36,
-                4.75,
-              ],
-            },
-          },
-        },
-        alternative: {
-          size: 'ZG10',
-          maxSpeed: {
-            speed: [490, 490],
-            powerVolume: [0.01, 0.023],
-            tipSpeed: [1.8, 353],
-          },
-        },
-      },
-      sizes: INITIAL__resultData.results.ZG.sizes,
-      viscosities: INITIAL__resultData.results.ZG.viscosities,
-      specifications: INITIAL__resultData.results.ZG.specifications,
-    },
-    ZGP: {
-      selection: {
-        primary: {
-          size: 'ZGP8',
-          maxSpeed: {
-            speed: [343, 343],
-            powerVolume: [0.91, 0.91],
-            tipSpeed: [4.24, 4.24],
-          },
-        },
-      },
-      sizes: INITIAL__resultData.results.ZGP.sizes,
-      viscosities: INITIAL__resultData.results.ZGP.viscosities,
-      specifications: INITIAL__resultData.results.ZGP.specifications,
-    },
-    HP: {
-      selection: null,
-      sizes: INITIAL__resultData.results.HP.sizes,
-      viscosities: INITIAL__resultData.results.HP.viscosities,
-      specifications: INITIAL__resultData.results.HP.specifications,
-    },
-    HS: {
-      selection: null,
-      sizes: INITIAL__resultData.results.HS.sizes,
-      viscosities: INITIAL__resultData.results.HS.viscosities,
-      specifications: INITIAL__resultData.results.HS.sizes,
-    },
-    ZF: {
-      selection: null,
-      sizes: INITIAL__resultData.results.ZF.sizes,
-      viscosities: INITIAL__resultData.results.ZF.viscosities,
-      specifications: INITIAL__resultData.results.ZF.sizes,
     },
   },
 }
