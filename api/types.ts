@@ -1,3 +1,8 @@
+/**
+ * Incredibly accurate data versioning ;)
+ */
+export const VERSION = '0.24'
+
 export type UnitSystem = 'Metric' | 'Imperial'
 
 export type MixerKey = 'ZG' | 'ZF' | 'HP' | 'HS' | 'ZGP'
