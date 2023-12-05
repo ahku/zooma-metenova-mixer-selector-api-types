@@ -1,3 +1,5 @@
+export type UnitSystem = 'Metric' | 'Imperial'
+
 export type MixerKey = 'ZG' | 'ZF' | 'HP' | 'HS' | 'ZGP'
 /**
  * Note:
@@ -21,6 +23,93 @@ export type MixingIntensity = 'Gentle' | 'General' | 'Vigorous'
  * before it can start.
  */
 export interface EndpointInitialData {
+  /**
+   * Default values
+   */
+  defaults: {
+    /**
+     * <Inputs!D3>
+     */
+    mixingPurpose?: MixingPurposeCode | null
+    /**
+     * <Inputs!D4>
+     */
+    project?: string
+    /**
+     * <Inputs!D5>
+     */
+    site?: string
+    /**
+     * <Inputs!D6>
+     */
+    freeText?: string
+    /**
+     * <Inputs!D7>
+     */
+    vesselJacket?: boolean | null
+    /**
+     * <Inputs!D8>
+     */
+    mobileVessel?: boolean | null
+    /**
+     * <Inputs!D9>
+     */
+    innerDiameter?: number | null
+    /**
+     * <Inputs!D10>
+     */
+    wallThickness?: number | null
+    /**
+     * <Inputs!D11>
+     * Previously called "Nominal volume"
+     */
+    maximumVolume?: number | null
+    /**
+     * <Inputs!D12>
+     * Previously called "Nominal volume"
+     */
+    workingVolume?: number | null
+    /**
+     * <Inputs!D13>
+     */
+    mixingIntensity?: MixingIntensity
+    /**
+     * <Inputs!D14>
+     */
+    density?: number | null
+    /**
+     * <Inputs!D15>
+     */
+    viscosity?: number | null
+    /**
+     * <Inputs!D17>
+     */
+    material?: string | null
+    /**
+     * <Inputs!D19>
+     */
+    oRing?: string | null
+    /**
+     * <Inputs!D20>
+     */
+    ipClass?: string | null
+    /**
+     * <Inputs!D21>
+     */
+    atex?: boolean | null
+    /**
+     * <Inputs!D22>
+     */
+    rpmSensor?: boolean | null
+    /**
+     * <Inputs!D23>
+     */
+    loweringDevice?: boolean | null
+    /**
+     * <Inputs!D24>
+     */
+    units?: UnitSystem
+  }
   /**
    * <{MIXER}!{B6-}>
    * A list of all available sizes of a mixer
@@ -215,15 +304,6 @@ interface MixerSelectionData {
   // customSpeed?: MixerTurnoverData | null
 }
 
-const test: ResultQueryParams = {
-  inner_diameter: 22,
-  maximum_volume: 23,
-  wall_thickness: 5,
-  working_volume: 23,
-  alt_choices: {
-    HS: '23',
-  },
-}
 export interface EndpointResultItem {
   /**
    * The selection data will present the recommended and optional alternative
@@ -291,6 +371,10 @@ export interface EndpointResultItem {
      * <Output!{MIXER_COLUMNS_1-2}>
      * Each mixer has two columns, so the value
      * can either be a string or string array
+     *
+     * @PARSING INSTRUCTIONS:
+     * If the (first) value is "N/A", please omit
+     * _the whole row_!
      */
     value?: string[]
     /**
