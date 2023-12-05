@@ -82,11 +82,11 @@ export interface ResultQueryParams {
   /**
    * <Input!D7>
    */
-  vessel_jacket?: boolean | number
+  vessel_jacket?: boolean
   /**
    * <Input!D8>
    */
-  mobile_vessel?: boolean | number
+  mobile_vessel?: boolean
 
   //------------------------------------------------------------------------
   //  Step 2: Liquid
@@ -131,7 +131,7 @@ export interface ResultQueryParams {
    */
   material?: string | null
   /**
-   * <Input!D20>
+   * <Input!D19>
    * Material: O-rings
    * Defaults to the first list option
    */
@@ -144,15 +144,15 @@ export interface ResultQueryParams {
   /**
    * <Input!D21>
    */
-  atex?: boolean | number
+  atex?: boolean
   /**
    * <Input!D22>
    */
-  rpm_sensor?: boolean | number
+  rpm_sensor?: boolean
   /**
    * <Input!D3>
    */
-  lowering_device?: boolean | number
+  lowering_device?: boolean
 
   /**
    * <Input!D4>
@@ -176,15 +176,15 @@ interface MixerTurnoverData {
   /**
    * Metric value, or [metric, imperial] unit values
    */
-  speed: number | [number, number]
+  speed: [number, number]
   /**
    * Metric value, or [metric, imperial] unit values
    */
-  powerVolume: number | [number, number]
+  powerVolume: [number, number]
   /**
    * Metric value, or [metric, imperial] unit values
    */
-  tipSpeed: number | [number, number]
+  tipSpeed: [number, number]
   /**
    * This is used to generate the curve for
    * the tank turnover graph
@@ -204,15 +204,15 @@ interface MixerTurnoverData {
 interface MixerSelectionData {
   size: MixerSize
   maxSpeed: MixerTurnoverData
-  /**
-   * @deprecated will be replaced with customSpeed
-   */
-  halfSpeed: MixerTurnoverData
-  /**
-   * Refers to Tank turnover- and blending-time section
-   * where the user can set their own times
-   */
-  customSpeed?: MixerTurnoverData | null
+  // /**
+  //  * @deprecated will be replaced with customSpeed
+  //  */
+  // halfSpeed: MixerTurnoverData
+  // /**
+  //  * Refers to Tank turnover- and blending-time section
+  //  * where the user can set their own times
+  //  */
+  // customSpeed?: MixerTurnoverData | null
 }
 
 const test: ResultQueryParams = {
@@ -244,7 +244,7 @@ export interface EndpointResultItem {
      * NOTE: If the cell value is 'N/A', it would be preferable if the
      * API set the value to null for consistency
      */
-    primary: MixerSelectionData | 'N/A' | null
+    primary: MixerSelectionData | null
     /**
      * <{MIXER}!B45>
      * The alternative choice data will only be included if another mixer size
@@ -253,7 +253,7 @@ export interface EndpointResultItem {
      * NOTE: If the cell value is 'N/A', it would be preferable if the
      * API set the value to null for consistency
      */
-    alternative?: MixerSelectionData | 'N/A' | null
+    alternative?: MixerSelectionData | null
   }
   /**
    * <Mixer>!<{B|D|F|...}-{7-41}>
@@ -292,7 +292,7 @@ export interface EndpointResultItem {
      * Each mixer has two columns, so the value
      * can either be a string or string array
      */
-    value?: string | string[]
+    value?: string[]
     /**
      * Set when the (value) label should be bold
      */
