@@ -268,27 +268,37 @@ export interface ResultQueryParams {
  */
 interface MixerTurnoverData {
   /**
+   * [Max speed] <{Mixer}!X49,Z49>
    * Metric value, or [metric, imperial] unit values
    */
   speed: [number, number]
   /**
+   * [Max speed] <{Mixer}!X50,Z50>
    * Metric value, or [metric, imperial] unit values
    */
   powerVolume: [number, number]
   /**
+   * [Max speed] <{Mixer}!X51,Z51>
    * Metric value, or [metric, imperial] unit values
    */
   tipSpeed: [number, number]
+  /**
+   * [Max speed] <{Mixer}!X52,Z52>
+   * The indicative blending time
+   */
+  blendingTime: [number, number]
   /**
    * This is used to generate the curve for
    * the tank turnover graph
    */
   data?: {
     /**
+     * [Max speed] <{Mixer}!W63-73>
      * Tank turnover values at the set [Viscosity] value
      */
     turnovers: number[]
     /**
+     * [Max speed] <{Mixer}!X63-73>
      * Values in minutes
      */
     time: number[]

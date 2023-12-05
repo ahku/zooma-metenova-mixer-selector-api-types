@@ -15,6 +15,7 @@ export const INITIAL__resultData: EndpointResultsData = {
             speed: [487, 487],
             powerVolume: [0.63, 2.387],
             tipSpeed: [4.51, 893],
+            blendingTime: [1.5, 1.5],
             data: {
               turnovers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
               time: [
@@ -24,12 +25,17 @@ export const INITIAL__resultData: EndpointResultsData = {
             },
           },
         },
+        /**
+         * Will only be set if alt_choices key is set, and
+         * does not match the primary (mixer) key
+         */
         alternative: {
           size: 'ZG10',
           maxSpeed: {
             speed: [490, 490],
             powerVolume: [0.01, 0.023],
             tipSpeed: [1.8, 353],
+            blendingTime: [0.2, 0.2],
           },
         },
       },
@@ -158,9 +164,10 @@ export const INITIAL__resultData: EndpointResultsData = {
           maxSpeed: {
             speed: [487, 487],
             powerVolume: [0.543, 2.057],
-            tipSpeed: [3.82,753]
-          }
-        }
+            tipSpeed: [3.82, 753],
+            blendingTime: [0.3, 0.3],
+          },
+        },
       },
       viscosities: [],
       sizes: [],
