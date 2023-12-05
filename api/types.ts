@@ -93,7 +93,7 @@ export interface EndpointInitialData {
     /**
      * <Inputs!D19>
      */
-    oRing?: string | null
+    oRings?: string | null
     /**
      * <Inputs!D20>
      */
@@ -229,7 +229,7 @@ export interface ResultQueryParams {
    * Material: O-rings
    * Defaults to the first list option
    */
-  o_ring?: string | null
+  o_rings?: string | null
   /**
    * <Input!D20>
    * @default IP55
