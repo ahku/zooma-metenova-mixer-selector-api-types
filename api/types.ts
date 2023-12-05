@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.24'
+export const VERSION = '0.25'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 

@@ -95,26 +95,26 @@ export const INITIAL__resultData: EndpointResultsData = {
         },
         {
           label: 'Vessel jacket',
-          value: 'Yes',
+          value: ['Yes'],
         },
         {
           label: 'Mobile vessel',
-          value: 'No',
+          value: ['No'],
         },
         {
           label: 'Inner diameter',
-          value: '1003 mm',
+          value: ['1003 mm'],
         },
         {
           label: 'Position of Mixer',
-          value: '134mm - 223mm',
+          value: ['134mm - 223mm'],
         },
         {
           label: 'Mixing and Media',
         },
         {
           label: 'Selected Mixer',
-          value: 'ZG7',
+          value: ['ZG7'],
           boldLabel: true,
         },
         {
@@ -213,11 +213,6 @@ export const SELECTION__resultData: EndpointResultsData = {
               ],
             },
           },
-          halfSpeed: {
-            speed: [245, 245],
-            powerVolume: [0.079, 0.2984],
-            tipSpeed: [2.27, 447],
-          },
         },
         alternative: {
           size: 'ZG10',
@@ -225,11 +220,6 @@ export const SELECTION__resultData: EndpointResultsData = {
             speed: [490, 490],
             powerVolume: [0.01, 0.023],
             tipSpeed: [1.8, 353],
-          },
-          halfSpeed: {
-            speed: [245, 245],
-            powerVolume: [0.001, 0.003],
-            tipSpeed: [0.9, 177],
           },
         },
       },
@@ -245,11 +235,6 @@ export const SELECTION__resultData: EndpointResultsData = {
             speed: [343, 343],
             powerVolume: [0.91, 0.91],
             tipSpeed: [4.24, 4.24],
-          },
-          halfSpeed: {
-            speed: 170.5,
-            powerVolume: 0.11,
-            tipSpeed: 2.11,
           },
         },
       },

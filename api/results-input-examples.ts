@@ -7,8 +7,8 @@ const EX1_VESSEL_resultInputData: ResultQueryParams = {
   inner_diameter: 1003,
   working_volume: 1003,
   maximum_volume: 1200,
-  vessel_jacket: 1,
-  mobile_vessel: 0,
+  vessel_jacket: true,
+  mobile_vessel: false,
 }
 
 //------------------------------------------------------------------------
@@ -20,8 +20,8 @@ const EX2_VESSEL_resultInputData: ResultQueryParams = {
   working_volume: 1003,
   maximum_volume: 1200,
   wall_thickness: 5,
-  vessel_jacket: 1,
-  mobile_vessel: 0,
+  vessel_jacket: true,
+  mobile_vessel: false,
 }
 
 //------------------------------------------------------------------------
@@ -33,8 +33,8 @@ const EX3_LIQUID_resultInputData: ResultQueryParams = {
   working_volume: 1003,
   maximum_volume: 1200,
   wall_thickness: 5,
-  vessel_jacket: 1,
-  mobile_vessel: 0,
+  vessel_jacket: true,
+  mobile_vessel: false,
   mixing_purpose: '#02',
   mixing_intensity: 'Vigorous',
   density: 1000,
@@ -50,8 +50,8 @@ const EX4_LIQUID_resultInputData: ResultQueryParams = {
   working_volume: 1003,
   maximum_volume: 1200,
   wall_thickness: 5,
-  vessel_jacket: 1,
-  mobile_vessel: 0,
+  vessel_jacket: true,
+  mobile_vessel: false,
   mixing_purpose: '#02',
   alt_choices: {
     ZG: 'ZG6',
