@@ -1,6 +1,10 @@
 import { EndpointInitialData } from './types'
 
 export const initialData: EndpointInitialData = {
+  defaults: {
+    innerDiameter: 1003
+    // etc
+  },
   mixerSizes: {
     ZG: ['ZG1', 'ZG2', 'ZG3', 'ZG4', 'ZG5', 'ZG6', 'ZG7', 'ZG8', 'ZG9', 'ZG10'],
     ZGP: ['ZGP2', 'ZGP5', 'ZGP8'],
