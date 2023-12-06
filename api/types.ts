@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.25'
+export const VERSION = '0.26'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -284,12 +284,19 @@ interface MixerTurnoverData {
   tipSpeed: [number, number]
   /**
    * [Max speed] <{Mixer}!X52,Z52>
-   * The indicative blending time
+   * The indicative blending time.
+   *
+   * @PARSING INSTRUCTIONS:
+   * If the values are "N/A", set the value to null
    */
-  blendingTime: [number, number]
+  blendingTime: [number, number] | null
   /**
    * This is used to generate the curve for
    * the tank turnover graph
+   *
+   * @PARSING INSTRUCTIONS:
+   * If the `blendingTime` is null, we can
+   * omit the whole data property!
    */
   data?: {
     /**
@@ -351,7 +358,7 @@ export interface EndpointResultItem {
     alternative?: MixerSelectionData | null
   }
   /**
-   * <Mixer>!<{B|D|F|...}-{7-41}>
+   * <Mixer>!<{B|D|F|...}-{6-40}>
    * Contains the size label and the volume data
    */
   sizes: {
