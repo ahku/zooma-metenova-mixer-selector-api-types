@@ -36,6 +36,13 @@ export const INITIAL__resultData: EndpointResultsData = {
             powerVolume: [0.01, 0.023],
             tipSpeed: [1.8, 353],
             blendingTime: [0.2, 0.2],
+            data: {
+              turnovers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+              time: [
+                0.0, 0.4, 0.79, 1.19, 1.58, 1.98, 2.38, 2.77, 3.17, 3.57, 3.96, 4.36,
+                4.75,
+              ],
+            },
           },
         },
       },
@@ -170,6 +177,7 @@ export const INITIAL__resultData: EndpointResultsData = {
             blendingTime: [0.3, 0.3],
           },
         },
+        alternative: null
       },
       viscosities: [],
       sizes: [],
@@ -186,6 +194,7 @@ export const INITIAL__resultData: EndpointResultsData = {
             blendingTime: null,
           },
         },
+        alternative:null
       },
       sizes: [
         {
