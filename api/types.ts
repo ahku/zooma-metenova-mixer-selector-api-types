@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.28'
+export const VERSION = '0.29'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -355,7 +355,7 @@ export interface EndpointResultItem {
      * NOTE: If the cell value is 'N/A', it would be preferable if the
      * API set the value to null for consistency
      */
-    alternative?: MixerSelectionData | null
+    alternative: MixerSelectionData | null
   }
   /**
    * <Mixer>!<{B|D|F|...}-{6-40}>
@@ -398,7 +398,7 @@ export interface EndpointResultItem {
      * If the (first) value is "N/A", please omit
      * _the whole row_!
      */
-    value?: string[] | null
+    value: string[] | null
     /**
      * Set when the (value) label should be bold
      */
