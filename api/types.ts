@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.27'
+export const VERSION = '0.28'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -271,17 +271,17 @@ export interface MixerTurnoverData {
    * [Max speed] <{Mixer}!X49,Z49>
    * Metric value, or [metric, imperial] unit values
    */
-  speed: [number, number]
+  speed: [number, number] | null
   /**
    * [Max speed] <{Mixer}!X50,Z50>
    * Metric value, or [metric, imperial] unit values
    */
-  powerVolume: [number, number]
+  powerVolume: [number, number] | null
   /**
    * [Max speed] <{Mixer}!X51,Z51>
    * Metric value, or [metric, imperial] unit values
    */
-  tipSpeed: [number, number]
+  tipSpeed: [number, number] | null
   /**
    * [Max speed] <{Mixer}!X52,Z52>
    * The indicative blending time.
@@ -309,7 +309,7 @@ export interface MixerTurnoverData {
      * Values in minutes
      */
     time: number[]
-  }
+  } | null
 }
 
 export interface MixerSelectionData {
@@ -398,7 +398,7 @@ export interface EndpointResultItem {
      * If the (first) value is "N/A", please omit
      * _the whole row_!
      */
-    value: string[] | null
+    value?: string[] | null
     /**
      * Set when the (value) label should be bold
      */
