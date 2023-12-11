@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.26'
+export const VERSION = '0.27'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -266,7 +266,7 @@ export interface ResultQueryParams {
  * The values can either be set as a single value
  * or a tuple of [metric,imperial] unit values
  */
-interface MixerTurnoverData {
+export interface MixerTurnoverData {
   /**
    * [Max speed] <{Mixer}!X49,Z49>
    * Metric value, or [metric, imperial] unit values
@@ -312,7 +312,7 @@ interface MixerTurnoverData {
   }
 }
 
-interface MixerSelectionData {
+export interface MixerSelectionData {
   size: MixerSize
   maxSpeed: MixerTurnoverData
   // /**
@@ -398,7 +398,7 @@ export interface EndpointResultItem {
      * If the (first) value is "N/A", please omit
      * _the whole row_!
      */
-    value?: string[]
+    value: string[] | null
     /**
      * Set when the (value) label should be bold
      */
