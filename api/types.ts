@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.29'
+export const VERSION = '0.30'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -347,15 +347,6 @@ export interface EndpointResultItem {
      * API set the value to null for consistency
      */
     primary: MixerSelectionData | null
-    /**
-     * <{MIXER}!B45>
-     * The alternative choice data will only be included if another mixer size
-     * --different from the primary choice--is set via `alt_choices`.
-     *
-     * NOTE: If the cell value is 'N/A', it would be preferable if the
-     * API set the value to null for consistency
-     */
-    alternative: MixerSelectionData | null
   }
   /**
    * <Mixer>!<{B|D|F|...}-{6-40}>
