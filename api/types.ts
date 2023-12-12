@@ -314,6 +314,7 @@ export interface MixerTurnoverData {
 
 export interface MixerSelectionData {
   size: MixerSize
+  altChoiceSize: MixerSize | null
   maxSpeed: MixerTurnoverData
   // /**
   //  * @deprecated will be replaced with customSpeed
@@ -328,35 +329,15 @@ export interface MixerSelectionData {
 
 export interface EndpointResultItem {
   /**
-   * The selection data will present the recommended and optional alternative
-   * mixer size based on a combination of the essential inputs (`working_volume`,
-   * `viscosity` and `mixing_intensity`) the sorting inputs: `mixing_purpose` and
-   * `alt_choices`. It will also contain the speed data which is calculated from
-   * the `volume` and `density` values.
+   * <{MIXER}!B44>
+   * The primary selection data is what Metenova recommends, based on the
+   * user's input.
    *
-   * In the case where there are no available recommendations
-   * for a mixer, selection will be set to `null`
+   * NOTE: If the cell value is 'N/A', it would be preferable if the
+   * API set the value to null for consistency
    */
-  selection: null | {
-    /**
-     * <{MIXER}!B44>
-     * The primary selection data is what Metenova recommends, based on the
-     * user's input.
-     *
-     * NOTE: If the cell value is 'N/A', it would be preferable if the
-     * API set the value to null for consistency
-     */
-    primary: MixerSelectionData | null
-    /**
-     * <{MIXER}!B45>
-     * The alternative choice data will only be included if another mixer size
-     * --different from the primary choice--is set via `alt_choices`.
-     *
-     * NOTE: If the cell value is 'N/A', it would be preferable if the
-     * API set the value to null for consistency
-     */
-    alternative: MixerSelectionData | null
-  }
+  selection: MixerSelectionData | null
+
   /**
    * <Mixer>!<{B|D|F|...}-{6-40}>
    * Contains the size label and the volume data
