@@ -269,7 +269,7 @@ export interface ResultQueryParams {
    * of the final Mixer choice. The size selection will be
    * extracted from the EndpointResultData
    */
-  selected_mixer?: MixerKey|null
+  selected_mixer?: MixerKey | null
 }
 
 /**
