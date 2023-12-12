@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.31'
+export const VERSION = '0.32'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -260,6 +260,16 @@ export interface ResultQueryParams {
    * <Input!D6>
    */
   free_text?: string | null
+
+  //------------------------------------------------------------------------
+  //  Client App Only
+  //------------------------------------------------------------------------
+  /**
+   * This property is only used by the client app to keep track
+   * of the final Mixer choice. The size selection will be
+   * extracted from the EndpointResultData
+   */
+  selected_mixer?: MixerKey
 }
 
 /**
