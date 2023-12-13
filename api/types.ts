@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.32'
+export const VERSION = '0.33'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -323,7 +323,7 @@ export interface MixerTurnoverData {
 }
 
 export interface MixerSelectionData {
-  size: MixerSize
+  size: MixerSize | null
   altChoiceSize: MixerSize | null
   maxSpeed: MixerTurnoverData
   // /**
