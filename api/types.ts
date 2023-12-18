@@ -152,7 +152,7 @@ export interface ResultQueryParams {
   //------------------------------------------------------------------------
   /**
    * <Input!D24>
-   * @default metric
+   * @default Metric
    */
   units?: UnitSystem | null
   /**
@@ -261,12 +261,17 @@ export interface ResultQueryParams {
    */
   free_text?: string | null
 
-  //------------------------------------------------------------------------
-  //  Client App Only
-  //------------------------------------------------------------------------
   /**
    * <Input!C33>
+   * A.k.a. "Final Selected Mixer" in the Excel.
    * This property will be set on the last step.
+   */
+  selected_mixer_size?: MixerSize | null
+
+  /**
+   * CLIENT APP ONLY
+   * This property is only used by the client app to keep track
+   * of the final Mixer choice.
    */
   selected_mixer?: MixerKey | null
 }
@@ -327,12 +332,12 @@ export interface MixerSelectionData {
   maxSpeed: MixerTurnoverData
   /**
    * <Min Vol!G14>
-   * This value will only be set if ResultQueryParams['selected_mixer'] is set
+   * This value will only be set if ResultQueryParams['selected_mixer_size'] is set
    */
   minimumVolume: number | null
   /**
    * <Min Vol!H14>
-   * This value will only be set if ResultQueryParams['selected_mixer'] is set
+   * This value will only be set if ResultQueryParams['selected_mixer_size'] is set
    */
   lastDropVolume: number | null
 
