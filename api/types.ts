@@ -329,7 +329,7 @@ export interface MixerSelectionData {
    * <Min Vol!G14>
    * This value will only be set if ResultQueryParams['selected_mixer'] is set
    */
-  minVolume: number | null
+  minimumVolume: number | null
   /**
    * <Min Vol!H14>
    * This value will only be set if ResultQueryParams['selected_mixer'] is set
