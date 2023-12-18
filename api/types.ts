@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.33'
+export const VERSION = '0.35'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -154,7 +154,7 @@ export interface ResultQueryParams {
    * <Input!D24>
    * @default metric
    */
-  units?: 'metric' | 'imperial' | null
+  units?: UnitSystem | null
   /**
    * <Input!D9>
    */
@@ -244,7 +244,7 @@ export interface ResultQueryParams {
    */
   rpm_sensor?: boolean
   /**
-   * <Input!D3>
+   * <Input!D23>
    */
   lowering_device?: boolean
 
@@ -265,9 +265,8 @@ export interface ResultQueryParams {
   //  Client App Only
   //------------------------------------------------------------------------
   /**
-   * This property is only used by the client app to keep track
-   * of the final Mixer choice. The size selection will be
-   * extracted from the EndpointResultData
+   * <Input!C33>
+   * This property will be set on the last step.
    */
   selected_mixer?: MixerKey | null
 }
@@ -326,10 +325,17 @@ export interface MixerSelectionData {
   size: MixerSize | null
   altChoiceSize: MixerSize | null
   maxSpeed: MixerTurnoverData
-  // /**
-  //  * @deprecated will be replaced with customSpeed
-  //  */
-  // halfSpeed: MixerTurnoverData
+  /**
+   * <Min Vol!G14>
+   * This value will only be set if ResultQueryParams['selected_mixer'] is set
+   */
+  minVolume: number | null
+  /**
+   * <Min Vol!H14>
+   * This value will only be set if ResultQueryParams['selected_mixer'] is set
+   */
+  lastDropVolume: number | null
+
   // /**
   //  * Refers to Tank turnover- and blending-time section
   //  * where the user can set their own times
@@ -413,3 +419,45 @@ export interface EndpointResultsData {
   }
   results: Record<MixerKey, EndpointResultItem>
 }
+
+//------------------------------------------------------------------------
+//  HubSpot Types
+//------------------------------------------------------------------------
+/**
+ * Types for the data object that will be created by HubSpot, to
+ * pass the datasheets set for each mixer
+ */
+export type MixerDatasheet = {
+  title: string
+  src: string
+  /**
+   * Example:
+   * { atex: false } = Only show when atex has not been set
+   * { atex: true } = Only show when atex has been set
+   */
+  rules?: Record<string, boolean>
+}
+
+export type MixerDatasheetList = Record<MixerKey, MixerDatasheet[]>
+
+/**
+ * This object type will be created by HubSpot and passed
+ * to the client application.
+ */
+export type MixerMeta = {
+  title: string
+  shortDesc: string
+  thumbnail: string
+  image: string
+  excludedProps?: string[]
+  datasheets: MixerDatasheet[]
+  specImages?: {
+    /**
+     * The image will be injected under the
+     * matching section title
+     */
+    sectionTitle: string
+    src: string
+  }[]
+}
+export type MixerMetaList = Record<MixerKey, MixerMeta>
