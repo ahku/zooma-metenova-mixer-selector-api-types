@@ -23,6 +23,8 @@ export const INITIAL__resultData: EndpointResultsData = {
             ],
           },
         },
+        minimumVolume: null,
+        lastDropVolume: null
       },
       sizes: [
         {
@@ -154,6 +156,8 @@ export const INITIAL__resultData: EndpointResultsData = {
           tipSpeed: [3.82, 753],
           blendingTime: [0.3, 0.3],
         },
+        minimumVolume: null,
+        lastDropVolume: null
       },
       viscosities: [],
       sizes: [],
@@ -169,6 +173,8 @@ export const INITIAL__resultData: EndpointResultsData = {
           tipSpeed: [9.16, 1804],
           blendingTime: null,
         },
+        minimumVolume: null,
+        lastDropVolume: null
       },
       sizes: [
         {

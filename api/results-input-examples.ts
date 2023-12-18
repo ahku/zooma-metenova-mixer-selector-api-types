@@ -15,7 +15,7 @@ const EX1_VESSEL_resultInputData: ResultQueryParams = {
 //  Input Example 2: Minimum required fields (will never happen)
 //------------------------------------------------------------------------
 const EX2_VESSEL_resultInputData: ResultQueryParams = {
-  units: 'metric',
+  units: 'Metric',
   inner_diameter: 1003,
   working_volume: 1003,
   maximum_volume: 1200,
@@ -28,7 +28,7 @@ const EX2_VESSEL_resultInputData: ResultQueryParams = {
 //  Input Example 3: These inputs will always be set in step 2
 //------------------------------------------------------------------------
 const EX3_LIQUID_resultInputData: ResultQueryParams = {
-  units: 'metric',
+  units: 'Metric',
   inner_diameter: 1003,
   working_volume: 1003,
   maximum_volume: 1200,
@@ -45,7 +45,7 @@ const EX3_LIQUID_resultInputData: ResultQueryParams = {
 //  Input Example 4: The alt_choices are set
 //------------------------------------------------------------------------
 const EX4_LIQUID_resultInputData: ResultQueryParams = {
-  units: 'metric',
+  units: 'Metric',
   inner_diameter: 1003,
   working_volume: 1003,
   maximum_volume: 1200,
