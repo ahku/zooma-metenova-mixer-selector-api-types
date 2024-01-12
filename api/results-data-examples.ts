@@ -195,6 +195,13 @@ export const INITIAL__resultData: EndpointResultsData = {
           isFootnote: false,
         },
         {
+          label:
+            'Calculations based on cylindrical vessel with torispherical heads according to DIN 28011',
+          value: null,
+          boldLabel: false,
+          isFootnote: true,
+        },
+        {
           label: 'Mixing and Media',
           value: null,
           boldLabel: true,
@@ -247,6 +254,13 @@ export const INITIAL__resultData: EndpointResultsData = {
           value: ['2 min', '2 min'],
           boldLabel: false,
           isFootnote: false,
+        },
+        {
+          label:
+            "The tank turnover and blending-time is indicative and can not be guaranteed. To evaluate and optimize this mixing configuration, a CFD simulation and/or mixing evaluation can be performed in Metenova's Application lab.",
+          value: null,
+          boldLabel: false,
+          isFootnote: true,
         },
         {
           label: 'Mix Head and Tank Plate',
@@ -355,6 +369,13 @@ export const INITIAL__resultData: EndpointResultsData = {
           value: ['NO'],
           boldLabel: false,
           isFootnote: false,
+        },
+        {
+          label:
+            'For more detailed product data, please see respectively datasheets for Mix Head, Female Sleave, Male Post, Tank Plate and Drive Unit',
+          value: null,
+          boldLabel: false,
+          isFootnote: true,
         },
       ],
     },
