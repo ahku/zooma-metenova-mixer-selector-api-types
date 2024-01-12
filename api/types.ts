@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.35'
+export const VERSION = '0.36'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -268,8 +268,10 @@ export interface ResultQueryParams {
    */
   selected_mixer_size?: MixerSize | null
 
+  //------------------------------------------------------------------------
+  //  Client App Only
+  //------------------------------------------------------------------------
   /**
-   * CLIENT APP ONLY
    * This property is only used by the client app to keep track
    * of the final Mixer choice.
    */
@@ -298,12 +300,31 @@ export interface MixerTurnoverData {
   tipSpeed: [number, number] | null
   /**
    * [Max speed] <{Mixer}!X52,Z52>
-   * The indicative blending time.
+   * The indicative blending time 1 (low value).
+   *
+   * @PARSING INSTRUCTIONS:
+   * If the values are empty, set the value to -1
+   * If the values are "N/A", set the value to null
+   */
+  blendingTime1: [number, number] | null
+  /**
+   * [Max speed] <{Mixer}!X53,Z53>
+   * The indicative blending time 2 (high value).
+   *
+   * @PARSING INSTRUCTIONS:
+   * If the values are empty, set the value to -1
+   * If the values are "N/A", set the value to null
+   */
+  blendingTime2: [number, number] | null
+  /**
+   * [Max speed] <{Mixer}!X54,Z54>
+   * The prettified indicative blending time, which
+   * can be a single time or an interval.
    *
    * @PARSING INSTRUCTIONS:
    * If the values are "N/A", set the value to null
    */
-  blendingTime: [number, number] | null
+  blendingTime: [string, string] | null
   /**
    * This is used to generate the curve for
    * the tank turnover graph
@@ -334,12 +355,12 @@ export interface MixerSelectionData {
    * <Min Vol!G14>
    * This value will only be set if ResultQueryParams['selected_mixer_size'] is set
    */
-  minimumVolume: number | null
+  minimumVolume?: number | null
   /**
    * <Min Vol!H14>
    * This value will only be set if ResultQueryParams['selected_mixer_size'] is set
    */
-  lastDropVolume: number | null
+  lastDropVolume?: number | null
 
   // /**
   //  * Refers to Tank turnover- and blending-time section
@@ -388,7 +409,11 @@ export interface EndpointResultItem {
   specifications: {
     /**
      * <Output!B7-{n}>
-     * Single label means it is a heading
+     * Single label means it is a heading (or footnote)
+     *
+     * @PARSING INSTRUCTIONS:
+     * When italic style has been applied, it's a _footnote_
+     *
      */
     label: string
     /**
@@ -404,7 +429,11 @@ export interface EndpointResultItem {
     /**
      * Set when the (value) label should be bold
      */
-    boldLabel?: boolean
+    boldLabel: boolean | null
+    /**
+     * Set to true when the label has italic style
+     */
+    isFootnote: boolean | null
   }[]
 }
 
@@ -428,6 +457,20 @@ export interface EndpointResultsData {
 //------------------------------------------------------------------------
 //  HubSpot Types
 //------------------------------------------------------------------------
+interface RuleBase {
+  prop?: string
+  size?: string
+  show: boolean
+}
+interface PropRule extends RuleBase {
+  prop: string
+  size?: never
+}
+interface SizeRule extends RuleBase {
+  size: MixerSize
+  prop?: never
+}
+
 /**
  * Types for the data object that will be created by HubSpot, to
  * pass the datasheets set for each mixer
@@ -437,10 +480,11 @@ export type MixerDatasheet = {
   src: string
   /**
    * Example:
-   * { atex: false } = Only show when atex has not been set
-   * { atex: true } = Only show when atex has been set
+   * { prop: 'atex', show: false } = Only show when atex has not been set
+   * { prop: 'atex', show: true } = Only show when atex has been set
+   * { size: 'HP100', show: 100 } = Only show when size HP100 has been set
    */
-  rules?: Record<string, boolean>
+  rules?: Array<PropRule | SizeRule>
 }
 
 export type MixerDatasheetList = Record<MixerKey, MixerDatasheet[]>
