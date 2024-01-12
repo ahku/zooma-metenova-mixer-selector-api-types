@@ -303,8 +303,7 @@ export interface MixerTurnoverData {
    * The indicative blending time 1 (low value).
    *
    * @PARSING INSTRUCTIONS:
-   * If the values are empty, set the value to -1
-   * If the values are "N/A", set the value to null
+   * If the values are empty or "N/A", set the value to null
    */
   blendingTime1: [number, number] | null
   /**
@@ -312,8 +311,7 @@ export interface MixerTurnoverData {
    * The indicative blending time 2 (high value).
    *
    * @PARSING INSTRUCTIONS:
-   * If the values are empty, set the value to -1
-   * If the values are "N/A", set the value to null
+   * If the values are empty or "N/A", set the value to null
    */
   blendingTime2: [number, number] | null
   /**
