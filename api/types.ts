@@ -333,12 +333,12 @@ export interface MixerTurnoverData {
    */
   data?: {
     /**
-     * [Max speed] <{Mixer}!W63-73>
+     * [Max speed] <{Mixer}!W67-77>
      * Tank turnover values at the set [Viscosity] value
      */
     turnovers: number[]
     /**
-     * [Max speed] <{Mixer}!X63-73>
+     * [Max speed] <{Mixer}!X67-77>
      * Values in minutes
      */
     time: number[]
