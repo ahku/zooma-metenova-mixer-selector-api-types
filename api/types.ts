@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.36'
+export const VERSION = '0.37'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -350,13 +350,13 @@ export interface MixerSelectionData {
   altChoiceSize: MixerSize | null
   maxSpeed: MixerTurnoverData
   /**
-   * <Min Vol!G14>
-   * This value will only be set if ResultQueryParams['selected_mixer_size'] is set
+   * <Vessel dimensions - DIN 28011!{F-J}48>
+   * NOTE: The F-J column each represent a mixer (ZG, ZGP, HP, HS, ZF)
    */
   minimumVolume?: number | null
   /**
-   * <Min Vol!H14>
-   * This value will only be set if ResultQueryParams['selected_mixer_size'] is set
+   * <Vessel dimensions - DIN 28011!{F-J}49>
+   * NOTE: The F-J column each represent a mixer (ZG, ZGP, HP, HS, ZF)
    */
   lastDropVolume?: number | null
 
@@ -416,8 +416,8 @@ export interface EndpointResultItem {
     label: string
     /**
      * <Output!{MIXER_COLUMNS_1-2}>
-     * Each mixer has two columns, so the value
-     * can either be a string or string array
+     * Note: We're using a string array in case
+     * the mixer need two columns in the future.
      *
      * @PARSING INSTRUCTIONS:
      * If the (first) value is "N/A", please omit
