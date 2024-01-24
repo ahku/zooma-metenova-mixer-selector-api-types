@@ -333,12 +333,12 @@ export interface MixerTurnoverData {
    */
   data?: {
     /**
-     * [Max speed] <{Mixer}!W67-77>
+     * [Max speed] <{Mixer}!W63-73>
      * Tank turnover values at the set [Viscosity] value
      */
     turnovers: number[]
     /**
-     * [Max speed] <{Mixer}!X67-77>
+     * [Max speed] <{Mixer}!X63-73>
      * Values in minutes
      */
     time: number[]
@@ -416,8 +416,8 @@ export interface EndpointResultItem {
     label: string
     /**
      * <Output!{MIXER_COLUMNS_1-2}>
-     * Note: We're using a string array in case
-     * the mixer need two columns in the future.
+     * Each mixer has two columns, so the value
+     * can either be a string or string array
      *
      * @PARSING INSTRUCTIONS:
      * If the (first) value is "N/A", please omit
@@ -451,60 +451,3 @@ export interface EndpointResultsData {
   }
   results: Record<MixerKey, EndpointResultItem>
 }
-
-//------------------------------------------------------------------------
-//  HubSpot Types
-//------------------------------------------------------------------------
-interface RuleBase {
-  prop?: string
-  size?: string
-  show: boolean
-}
-interface PropRule extends RuleBase {
-  prop: string
-  size?: never
-}
-interface SizeRule extends RuleBase {
-  size: MixerSize
-  prop?: never
-}
-
-/**
- * Types for the data object that will be created by HubSpot, to
- * pass the datasheets set for each mixer
- */
-export type MixerDatasheet = {
-  title: string
-  src: string
-  /**
-   * Example:
-   * { prop: 'atex', show: false } = Only show when atex has not been set
-   * { prop: 'atex', show: true } = Only show when atex has been set
-   * { size: 'HP100', show: 100 } = Only show when size HP100 has been set
-   */
-  rules?: Array<PropRule | SizeRule>
-}
-
-export type MixerDatasheetList = Record<MixerKey, MixerDatasheet[]>
-
-/**
- * This object type will be created by HubSpot and passed
- * to the client application.
- */
-export type MixerMeta = {
-  title: string
-  shortDesc: string
-  thumbnail: string
-  image: string
-  excludedProps?: string[]
-  datasheets: MixerDatasheet[]
-  specImages?: {
-    /**
-     * The image will be injected under the
-     * matching section title
-     */
-    sectionTitle: string
-    src: string
-  }[]
-}
-export type MixerMetaList = Record<MixerKey, MixerMeta>
