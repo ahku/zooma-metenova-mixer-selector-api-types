@@ -57,20 +57,25 @@ export interface EndpointInitialData {
      */
     mobileVessel?: boolean | null
     /**
-     * <Inputs!D9>
+     * Metric <Inputs!D9>
+     * Imperial <Inputs!F9>
      */
     innerDiameter?: number | null
     /**
-     * <Inputs!D10>
+     * Metric <Inputs!D10>
+     * Imperial <Inputs!F10>
      */
     wallThickness?: number | null
     /**
-     * <Inputs!D11>
+     * Metric <Inputs!D11>
+     * Imperial <Inputs!F11>
+     *
      * Previously called "Nominal volume"
      */
     maximumVolume?: number | null
     /**
-     * <Inputs!D12>
+     * Metric <Inputs!D12>
+     * Imperial <Inputs!F12>
      * Previously called "Nominal volume"
      */
     workingVolume?: number | null
@@ -79,7 +84,8 @@ export interface EndpointInitialData {
      */
     mixingIntensity?: MixingIntensity
     /**
-     * <Inputs!D14>
+     * Metric <Inputs!D14>
+     * Imperial <Inputs!F14>
      */
     density?: number | null
     /**
