@@ -352,9 +352,6 @@
         <compile-dependencies value="ASK" />
         <always-show-controls value="false" />
       </compiler>
-      <debugger>
-        <debugger-type value="JDBC" />
-      </debugger>
     </operation-settings>
     <ddl-file-settings>
       <extensions>
