@@ -436,6 +436,7 @@ export interface EndpointResultItem {
     boldLabel: boolean | null
     /**
      * Set to true when the label has italic style
+     * AND the value cell does not contain "N/A"
      */
     isFootnote: boolean | null
   }[]
