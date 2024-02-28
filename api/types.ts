@@ -417,6 +417,8 @@ export interface EndpointResultItem {
      *
      * @PARSING INSTRUCTIONS:
      * When italic style has been applied, it's a _footnote_
+     * UNLESS the value contains "N/A", which in case
+     * the _whole entry will be omitted_
      *
      */
     label: string
