@@ -1,7 +1,7 @@
 /**
  * Incredibly accurate data versioning ;)
  */
-export const VERSION = '0.38'
+export const VERSION = '0.40'
 
 export type UnitSystem = 'Metric' | 'Imperial'
 
@@ -373,7 +373,52 @@ export interface MixerSelectionData {
   // customSpeed?: MixerTurnoverData | null
 }
 
-export interface EndpointResultItem {
+/**
+ * Input parameters for `EndpointResultItem`
+ */
+export interface ResultPostPayload_V1 {
+  units: UnitSystem
+  innerDiameter: number
+  workingVolume: number
+  maximumVolume: number
+  wallThickness: number
+  vesselJacket: boolean
+  mobileVessel: boolean
+  /**
+   * NOTE: The type should be Partial<Record<MixerKey, MixerSize>>, but
+   * the ts-to-zod plugin will not convert that correctly
+   */
+  altChoices: Record<MixerKey | string, MixerSize>
+  selectedMixer: MixerSize | null
+  selectedMixerSize: MixerSize | null
+  mixingPurpose: MixingPurposeCode
+  mixingIntensity: MixingIntensity
+  density: number
+  viscosity: number
+  material: string
+  oRings: string
+  ipClass: string
+  atex: boolean
+  rpmSensor: boolean
+  loweringDevice: boolean
+  site: string
+  project: string
+  freeText: string
+}
+
+/**
+ *
+ */
+export type ResultPostPayloadAllRequired = Omit<
+  ResultPostPayload_V1,
+  'selectedMixer' | 'selectedMixerSize'
+> &
+  Required<Pick<ResultPostPayload_V1, 'selectedMixer' | 'selectedMixerSize'>>
+
+/**
+ * Represents the result data for each mixer
+ */
+export interface EndpointResultItem_V1 {
   /**
    * <{MIXER}!B44>
    * The primary selection data is what Metenova recommends, based on the
@@ -446,7 +491,7 @@ export interface EndpointResultItem {
 
 /**
  * ENDPOINT /results
- * PAYLOAD: ResultInputParams
+ * PAYLOAD: ResultPostPayload_V1
  *
  * Returns _all_ mixers and their recommended settings based on the
  * user's input parameters and some metadata, which for now will be
@@ -458,5 +503,59 @@ export interface EndpointResultsData {
     site: string | null
     freeText: string | null
   }
-  results: Record<MixerKey, EndpointResultItem>
+  results: Record<MixerKey, EndpointResultItem_V1>
+}
+
+export type RevisionDatasheetEntry = {
+  title: string
+  src: string
+}
+
+/**
+ * ENDPOINT POST /revisions
+ * The post body data for creating a revision
+ */
+export interface EndpointPostRevisionPayload {
+  version: string
+  /**
+   * Note: All keys are required here, including
+   * nullable `selectedMixer` and `selectedMixerSize`
+   */
+  inputs: ResultPostPayloadAllRequired
+  /**
+   * Represents data related to the selected
+   * and mixer size.
+   */
+  mixerData: EndpointResultItem_V1
+  /**
+   * A key-value object with title and URL
+   * to a datasheet
+   */
+  datasheets: RevisionDatasheetEntry[]
+}
+
+/**
+ * ENDPOINT POST /revisions
+ * PAYLOAD: EndpointPostRevisionPayload
+ * Returns a revision GUID, or an error message
+ */
+export interface EndpointPostRevisionResponse {
+  guid: string | null
+  error: string | null
+}
+
+/**
+ * ENDPOINT GET /revisions/[:guid]
+ */
+export interface EndpointGetRevision {
+  guid: string
+  version: string
+  inputs: ResultPostPayloadAllRequired
+  mixerData: EndpointResultItem_V1
+  datasheets: RevisionDatasheetEntry[]
+  /**
+   * Unix Timestamp
+   */
+  created: number
+  // modified: number
 }
