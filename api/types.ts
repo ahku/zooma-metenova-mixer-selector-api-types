@@ -547,7 +547,17 @@ export interface EndpointPostRevisionResponse {
 /**
  * ENDPOINT GET /revisions/[:guid]
  */
-export interface EndpointGetRevision {
+export interface EndpointGetRevisionResponse {
+  data: EndpointGetRevisionData | null
+  error: string | null
+}
+
+
+/**
+ * ENDPOINT GET /revisions/[:guid]
+ * This is the data part of the get revisions response
+ */
+export interface EndpointGetRevisionData {
   guid: string
   version: string
   inputs: ResultPostPayloadAllRequired

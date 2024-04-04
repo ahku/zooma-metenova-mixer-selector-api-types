@@ -1,11 +1,18 @@
-import { EndpointGetRevision, EndpointPostRevisionResponse } from './types'
+import {
+  EndpointGetRevisionData,
+  EndpointGetRevisionResponse,
+  EndpointPostRevisionResponse
+} from './types'
 
 export const SizeRevisionPostResponse: EndpointPostRevisionResponse = {
   guid: '123e4567-e89b-12d3-a456-426655440000',
   error: null,
 }
 
-export const SizeRevisionData: EndpointGetRevision = {
+/**
+ * Data object for get revisions endpoint
+ */
+export const SizeRevisionData: EndpointGetRevisionData = {
   guid: '',
   version: '1.0',
   inputs: {
@@ -417,4 +424,21 @@ export const SizeRevisionData: EndpointGetRevision = {
     { title: 'Female Sleeve', src: '' },
   ],
   created: 1234,
+}
+
+
+/**
+ * Successful response object for /revisions/[:guid]
+ */
+export const SizeRevisionGetResponseSuccess: EndpointGetRevisionResponse = {
+  data: SizeRevisionData,
+  error: null,
+}
+
+/**
+ * Failed response object for /revisions/[:guid]
+ */
+export const SizeRevisionGetResponseError: EndpointGetRevisionResponse = {
+  data: null,
+  error: 'Invalid GUID',
 }
