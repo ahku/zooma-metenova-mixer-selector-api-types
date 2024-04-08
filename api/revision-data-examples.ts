@@ -6,7 +6,6 @@ import {
 
 export const SizeRevisionPostResponse: EndpointPostRevisionResponse = {
   guid: '123e4567-e89b-12d3-a456-426655440000',
-  error: null,
 }
 
 /**
@@ -430,15 +429,9 @@ export const SizeRevisionData: EndpointGetRevisionData = {
 /**
  * Successful response object for /revisions/[:guid]
  */
-export const SizeRevisionGetResponseSuccess: EndpointGetRevisionResponse = {
-  data: SizeRevisionData,
-  error: null,
-}
+export const SizeRevisionGetResponseSuccess: EndpointGetRevisionResponse = SizeRevisionData
 
 /**
  * Failed response object for /revisions/[:guid]
  */
-export const SizeRevisionGetResponseError: EndpointGetRevisionResponse = {
-  data: null,
-  error: 'Invalid GUID',
-}
+export const SizeRevisionGetResponseError: EndpointGetRevisionResponse = null

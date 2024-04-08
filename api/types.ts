@@ -383,6 +383,7 @@ export interface ResultPostPayload_V1 {
   maximumVolume: number
   wallThickness: number
   vesselJacket: boolean
+
   mobileVessel: boolean
   /**
    * NOTE: The type should be Partial<Record<MixerKey, MixerSize>>, but
@@ -539,18 +540,12 @@ export interface EndpointPostRevisionPayload {
  * PAYLOAD: EndpointPostRevisionPayload
  * Returns a revision GUID, or an error message
  */
-export interface EndpointPostRevisionResponse {
-  guid: string | null
-  error: string | null
-}
+export type EndpointPostRevisionResponse = { guid:string } | null
 
 /**
  * ENDPOINT GET /revisions/[:guid]
  */
-export interface EndpointGetRevisionResponse {
-  data: EndpointGetRevisionData | null
-  error: string | null
-}
+export type EndpointGetRevisionResponse  = EndpointGetRevisionData|null
 
 
 /**
