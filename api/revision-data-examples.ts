@@ -1,7 +1,7 @@
 import {
   EndpointGetRevisionData,
   EndpointGetRevisionResponse,
-  EndpointPostRevisionResponse
+  EndpointPostRevisionResponse,
 } from './types'
 
 export const SizeRevisionPostResponse: EndpointPostRevisionResponse = {
@@ -415,21 +415,38 @@ export const SizeRevisionData: EndpointGetRevisionData = {
       },
     ],
   },
-  datasheets: [
-    { title: 'Mix Head', src: '' },
-    { title: 'Mix Post', src: '' },
-    { title: 'Tank Plate', src: '' },
-    { title: 'Drive Unit', src: '' },
-    { title: 'Female Sleeve', src: '' },
-  ],
+  mixerMeta: {
+    title: 'Zero-g',
+    shortDesc:
+      'Versatile, providing effective and gentle mixing at the same time, covering a vast range of applications',
+    thumbnail: '/img/products/zg.png',
+    image: '/img/products/zg.png',
+    datasheets: [
+      { title: 'Mix Head', src: '' },
+      { title: 'Mix Post', src: '' },
+      { title: 'Tank Plate', src: '' },
+      {
+        title: 'Mobile vessel',
+        src: '',
+        rules: [{ type: 'vessel-prop', value: 'mobileVessel', show: true }],
+      },
+      { title: 'Female Sleeve', src: '' },
+    ],
+    specImages: [
+      {
+        sectionTitle: 'Mix Head and Tank Plate',
+        src: '/img/products/specs/zg.png',
+      },
+    ],
+  },
   created: 1234,
 }
-
 
 /**
  * Successful response object for /revisions/[:guid]
  */
-export const SizeRevisionGetResponseSuccess: EndpointGetRevisionResponse = SizeRevisionData
+export const SizeRevisionGetResponseSuccess: EndpointGetRevisionResponse =
+  SizeRevisionData
 
 /**
  * Failed response object for /revisions/[:guid]

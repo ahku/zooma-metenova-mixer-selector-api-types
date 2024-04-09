@@ -813,22 +813,27 @@
       }
     ]
   },
-  "datasheets": [
-    {
-      "title": "Mix Head",
-      "src": ""
-    },
-    {
-      "title": "Mix Post",
-      "src": ""
-    },
-    {
-      "title": "Tank Plate",
-      "src": ""
-    },
-    {
-      "title": "Female Sleeve",
-      "src": ""
-    }
-  ]
+  "mixerMeta": {
+    "title": "Zero-g",
+    "shortDesc":
+    "Versatile, providing effective and gentle mixing at the same time, covering a vast range of applications",
+    "thumbnail": "/img/products/zg.png",
+    "image": "/img/products/zg.png",
+    "datasheets": [
+      { "title": "Mix Head", "src": "" },
+      { "title": "Mix Post", "src": "" },
+      { "title": "Tank Plate", "src": "" },
+      {
+        "title": "Mobile vessel",
+        "src": ""
+      },
+      { "title": "Female Sleeve", "src": "" }
+    ],
+    "specImages": [
+      {
+        "sectionTitle": "Mix Head and Tank Plate",
+        "src": "/img/products/specs/zg.png"
+      }
+    ]
+  }
 }

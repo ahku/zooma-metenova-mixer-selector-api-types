@@ -507,11 +507,6 @@ export interface EndpointResultsData {
   results: Record<MixerKey, EndpointResultItem_V1>
 }
 
-export type RevisionDatasheetEntry = {
-  title: string
-  src: string
-}
-
 /**
  * ENDPOINT POST /revisions
  * The post body data for creating a revision
@@ -529,10 +524,9 @@ export interface EndpointPostRevisionPayload {
    */
   mixerData: EndpointResultItem_V1
   /**
-   * A key-value object with title and URL
-   * to a datasheet
+   * Stores localization, datahsheets images, etc
    */
-  datasheets: RevisionDatasheetEntry[]
+  mixerMeta: MixerMeta
 }
 
 /**
@@ -557,10 +551,99 @@ export interface EndpointGetRevisionData {
   version: string
   inputs: ResultPostPayloadAllRequired
   mixerData: EndpointResultItem_V1
-  datasheets: RevisionDatasheetEntry[]
+  mixerMeta: MixerMeta
   /**
    * Unix Timestamp
    */
   created: number
   // modified: number
 }
+
+//------------------------------------------------------------------------
+//  HubSpot Types
+//------------------------------------------------------------------------
+/**
+ * Note: A rule condition is met when the property (value) is set
+ */
+interface RuleBase {
+  type?: 'vessel-prop' | 'mixer-prop' | 'size'
+  value: string
+  /**
+   * This is the value that the property should be
+   * for the rule conditions to meet
+   * @default true
+   */
+  targetValue?: boolean
+  /**
+   * Decides whether or not the item should be visible
+   * when _the property is set_
+   * @default true
+   */
+  show?: boolean
+  info?: string
+}
+interface VesselPropRule extends RuleBase {
+  type: 'vessel-prop'
+  value: string // keyof VesselData
+}
+interface MixerPropRule extends RuleBase {
+  type: 'mixer-prop'
+  value: string // keyof MixerPropsData
+}
+interface SizeRule extends RuleBase {
+  type: 'size'
+  value: MixerSize
+}
+
+export type MixerAssetRules = Array<VesselPropRule | MixerPropRule | SizeRule>
+export type MixerAssetRuleLogic = 'OR' | 'AND'
+
+/**
+ * Types for the data object that will be created by HubSpot, to
+ * pass the datasheets set for each mixer
+ */
+export type MixerDatasheet = {
+  title: string
+  src: string
+  /**
+   * Example:
+   * { prop: 'atex', show: false } = Only show when atex has not been set
+   * { prop: 'atex', show: true } = Only show when atex has been set
+   * { size: 'HP100', show: 100 } = Only show when size HP100 has been set
+   */
+  rules?: MixerAssetRules
+}
+
+export type MixerDatasheetList = Record<MixerKey, MixerDatasheet[]>
+
+/**
+ * This object type will be created by HubSpot and passed
+ * to the client application.
+ */
+export type MixerMeta = {
+  title: string
+  shortDesc: string
+  thumbnail: string
+  image: string
+  excludedProps?: string[]
+  datasheets: MixerDatasheet[]
+  specImages?: {
+    /**
+     * The image will be injected under the
+     * matching section title
+     */
+    sectionTitle: string
+    src: string
+    /**
+     * Example:
+     * { prop: 'atex', show: false } = Only show when atex has not been set
+     * { prop: 'atex', show: true } = Only show when atex has been set
+     * { size: 'HP100', show: 100 } = Only show when size HP100 has been set
+     */
+    rules?: MixerAssetRules
+    // ruleLogic?: MixerAssetRuleLogic
+  }[]
+}
+export type MixerMetaList = Record<MixerKey, MixerMeta>
+
+export type MixerHubSpotFormList = Record<'contact' | 'save', string>
