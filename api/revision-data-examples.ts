@@ -439,7 +439,7 @@ export const SizeRevisionData: EndpointGetRevisionData = {
       },
     ],
   },
-  created: 1234,
+  created: 1712671602306,
 }
 
 /**
