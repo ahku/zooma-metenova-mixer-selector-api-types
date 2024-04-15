@@ -392,7 +392,7 @@ export interface ResultPostPayload_V1 {
   altChoices: Record<MixerKey | string, MixerSize>
   selectedMixer: MixerSize | null
   selectedMixerSize: MixerSize | null
-  mixingPurpose: MixingPurposeCode
+  mixingPurpose: MixingPurposeCode | null | undefined
   mixingIntensity: MixingIntensity
   density: number
   viscosity: number
